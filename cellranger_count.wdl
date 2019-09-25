@@ -5,7 +5,7 @@ workflow cellranger_count {
     String runID
     String samplePrefix
     String fastqDirectory
-    String referenceDirectory
+    String transcriptomeDirectory
     String localMem
   }
   call count {
@@ -13,33 +13,33 @@ workflow cellranger_count {
       runID = runID,
       samplePrefix = samplePrefix,
       fastqDirectory = fastqDirectory,
-      referenceDirectory = referenceDirectory,
+      transcriptome = transcriptomeDirectory,
       localMem = localMem
   }
 }
 
 task count {
   input {
-    String? cellranger = "cellranger"
+    String? modules = "cellranger"
+	String? cellranger = "cellranger"
     String runID
     String samplePrefix
     String fastqDirectory
-    String referenceDirectory
-    String? localMem = 2
-    String? modules ="cellranger"
+    String transcriptome
+    String? localMem = "2"
   }
 
   command <<<
    ~{cellranger} count \
-    --id "~(runID)" \
-    --fastq "~(fastqDirectory)" \
-    --sample "~(samplePrefix)" \
-    --transcriptome "~(transcriptome)" \
-    --localmem "~(localMem)"
+    --id "~{runID}" \
+    --fastq "~{fastqDirectory}" \
+    --sample "~{samplePrefix}" \
+    --transcriptome "~{transcriptome}" \
+    --localmem "~{localMem}"
   >>>
 
   runtime {
-    memory: "2 GB"
+    memory: "~{localMem}"
     modules: "~{modules}"
   }
 }
