@@ -3,7 +3,7 @@
     "description": "Cellranger Count workflow test",
     "metrics_calculate": "calculate.sh",
     "metrics_compare": "compare.sh",
-    "output_metrics_dir": "/.mounts/labs/gsi/testdata/cellranger_count/${project.version}",
+    "output_metrics_dir": "/.mounts/labs/gsi/testdata/cellrangerCount/${project.version}",
     "parameters": {
       "wdl_options": {
         "write_to_cache": false,
