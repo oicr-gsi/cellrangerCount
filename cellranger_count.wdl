@@ -67,7 +67,8 @@ task count {
     outs/raw_feature_bc_matrix
 
     # zip analysis folder
-    zip analysis
+    zip -r analysis \
+    outs/analysis
 
     #zip h5 files
     zip gene_matrices_molecule_info_h5 \
