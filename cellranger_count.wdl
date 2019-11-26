@@ -39,6 +39,7 @@ workflow cellranger_count {
     author: "Lawrence Heisler"
     email: "Lawrence.Heisler@oicr.on.ca"
     description: "Workflow for generating single cell feature counts for a single library."
+    dependencies: []
   }
 }
 
