@@ -1,6 +1,6 @@
 version 1.0
 
-workflow cellranger_count {
+workflow cellrangerCount {
   input {
     String runID
     String samplePrefix

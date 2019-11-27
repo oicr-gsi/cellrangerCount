@@ -10,12 +10,12 @@
         <relativePath/>
     </parent>
 
-    <artifactId>cellranger_count</artifactId>
+    <artifactId>cellrangerCount</artifactId>
     <version>1.0</version>
 
     <properties>
         <workflow-description>Workflow to process fastq files through cellranger count.</workflow-description>
-        <wdl-workflow>cellranger_count.wdl</wdl-workflow>
+        <wdl-workflow>cellrangerCount.wdl</wdl-workflow>
         <test-definition>tests.json</test-definition>
     </properties>
 

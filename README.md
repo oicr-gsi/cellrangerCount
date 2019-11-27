@@ -1,4 +1,4 @@
-# cellranger_count
+# cellrangerCount
 
 Workflow for generating single cell feature counts for a single library.
 
@@ -8,7 +8,7 @@ Workflow for generating single cell feature counts for a single library.
 
 ### Cromwell
 ```
-java -jar cromwell.jar run cellranger_count.wdl --inputs inputs.json
+java -jar cromwell.jar run cellrangerCount.wdl --inputs inputs.json
 ```
 
 ### Inputs

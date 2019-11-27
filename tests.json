@@ -13,14 +13,14 @@
   },
   "tests": [
     {
-      "id": "cellranger_count_test_01",
+      "id": "cellrangerCount_test_01",
       "parameters": {
         "wdl_inputs": {
-          "cellranger_count.runID": "count_FNS_0201_Pa_P_PE_453_MR",
-          "cellranger_count.samplePrefix": "FNS_0201_Pa_P_PE_453_MR",
-          "cellranger_count.fastqDirectory": "/.mounts/labs/gsiprojects/gsi/10XSingleCell/FN-170321_D00331_0232_AHHH75BCXY/HHH75BCXY/outs/fastq_path/test_run_fn/FNS_0201_Pa_P_PE_453_MR",
-          "cellranger_count.transcriptomeDirectory": "/.mounts/labs/resit/modulator/sw/data/cellranger-genome-grch38-3.0.0",
-          "cellranger_count.localMem": "2"
+          "cellrangerCount.runID": "count_FNS_0201_Pa_P_PE_453_MR",
+          "cellrangerCount.samplePrefix": "FNS_0201_Pa_P_PE_453_MR",
+          "cellrangerCount.fastqDirectory": "/.mounts/labs/gsiprojects/gsi/10XSingleCell/FN-170321_D00331_0232_AHHH75BCXY/HHH75BCXY/outs/fastq_path/test_run_fn/FNS_0201_Pa_P_PE_453_MR",
+          "cellrangerCount.transcriptomeDirectory": "/.mounts/labs/resit/modulator/sw/data/cellranger-genome-grch38-3.0.0",
+          "cellrangerCount.localMem": "2"
         }
       }
     }
