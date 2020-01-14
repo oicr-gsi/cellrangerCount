@@ -16,7 +16,7 @@
     <properties>
         <workflow-description>Workflow to process fastq files through cellranger count.</workflow-description>
         <wdl-workflow>cellrangerCount.wdl</wdl-workflow>
-        <test-definition>tests.json</test-definition>
+        <test-basedir>tests/</test-basedir>
     </properties>
 
 </project>
