@@ -18,14 +18,14 @@ Parameter|Value|Description
 ---|---|---
 `runID`|String|A unique run ID string.
 `samplePrefix`|String|Sample name (FASTQ file prefix). Can take multiple comma-separated values.
-`fastqDirectory`|String|Path to folder containing fastq files.
+`fastqs`|Array[File]|Array of input fastqs.
 `transcriptomeDirectory`|String|Path to Cell Ranger compatible transcriptome reference.
-`localMem`|String|Restricts cellranger to use specified amount of memory (in GB) to execute pipeline stages. By default, cellranger will use 90% of the memory available on your system.
 
 
 #### Optional workflow parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
+`localMem`|Int?|None|Restricts cellranger to use specified amount of memory (in GB) to execute pipeline stages. By default, cellranger will use 90% of the memory available on your system.
 
 
 #### Optional task parameters:
@@ -33,7 +33,7 @@ Parameter|Value|Default|Description
 ---|---|---|---
 `count.modules`|String?|"cellranger"|Environment module name to load before command execution.
 `count.cellranger`|String?|"cellranger"|
-
+`count.timeout`|Int|24|
 
 ### Outputs
 

@@ -3,7 +3,7 @@
     "description": "Cellranger Count workflow test",
     "metrics_calculate": "calculate.sh",
     "metrics_compare": "compare.sh",
-    "output_metrics_dir": "/.mounts/labs/gsi/testdata/cellrangerCount/${project.version}",
+    "output_metrics_dir": "/.mounts/labs/gsi/testdata/cellrangerCount/output_metrics/1.0",
     "parameters": {
       "wdl_options": {
         "write_to_cache": false,
@@ -13,16 +13,34 @@
   },
   "tests": [
     {
-      "id": "cellrangerCount_test_01",
+      "id": "10XT_0001_Le_C_PE_458_MR-test",
       "parameters": {
         "wdl_inputs": {
-          "cellrangerCount.runID": "count_FNS_0201_Pa_P_PE_453_MR",
-          "cellrangerCount.samplePrefix": "FNS_0201_Pa_P_PE_453_MR",
-          "cellrangerCount.fastqDirectory": "/.mounts/labs/gsiprojects/gsi/10XSingleCell/FN-170321_D00331_0232_AHHH75BCXY/HHH75BCXY/outs/fastq_path/test_run_fn/FNS_0201_Pa_P_PE_453_MR",
-          "cellrangerCount.transcriptomeDirectory": "/.mounts/labs/resit/modulator/sw/data/cellranger-genome-grch38-3.0.0",
-          "cellrangerCount.localMem": "2"
+          "cellrangerCount.runID": "count_10XT_0001_Le_C_PE_458_MR",
+          "cellrangerCount.samplePrefix": "10XT_0001_Le_C_PE_458_MR",
+          "cellrangerCount.fastqs": [
+            "/.mounts/labs/gsi/testdata/cellrangerCount/input_data/10XT_0001_Le_C_PE_458_MR_S1_L001_I1_001.fastq.gz",
+            "/.mounts/labs/gsi/testdata/cellrangerCount/input_data/10XT_0001_Le_C_PE_458_MR_S1_L001_R1_001.fastq.gz",
+            "/.mounts/labs/gsi/testdata/cellrangerCount/input_data/10XT_0001_Le_C_PE_458_MR_S1_L001_R2_001.fastq.gz"
+          ],
+          "cellrangerCount.transcriptomeDirectory": "/.mounts/labs/resit/modulator/sw/data/cellranger-genome-grch38-3.0.0"
+        }
+      }
+    },
+    {
+      "id": "10XT_0001_Le_C_PE_458_MR-test2",
+      "parameters": {
+        "wdl_inputs": {
+          "cellrangerCount.runID": "count_10XT_0001_Le_C_PE_458_MR",
+          "cellrangerCount.samplePrefix": "10XT_0001_Le_C_PE_458_MR",
+          "cellrangerCount.fastqs": [
+            "/.mounts/labs/gsi/testdata/cellrangerCount/input_data/10XT_0001_Le_C_PE_458_MR_S1_L001_R2_001.fastq.gz",
+            "/.mounts/labs/gsi/testdata/cellrangerCount/input_data/10XT_0001_Le_C_PE_458_MR_S1_L001_R1_001.fastq.gz"
+          ],
+          "cellrangerCount.transcriptomeDirectory": "/.mounts/labs/resit/modulator/sw/data/cellranger-genome-grch38-3.0.0"
         }
       }
     }
   ]
 }
+

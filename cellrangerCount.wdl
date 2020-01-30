@@ -4,15 +4,22 @@ workflow cellrangerCount {
   input {
     String runID
     String samplePrefix
-    String fastqDirectory
+    Array[File] fastqs
     String transcriptomeDirectory
-    String localMem
+    Int? localMem
   }
+
+  call symlinkFastqs {
+      input:
+        samplePrefix = samplePrefix,
+        fastqs = fastqs
+    }
+
   call count {
     input:
       runID = runID,
       samplePrefix = samplePrefix,
-      fastqDirectory = fastqDirectory,
+      fastqDirectory = symlinkFastqs.fastqDirectory,
       transcriptomeDirectory = transcriptomeDirectory,
       localMem = localMem
   }
@@ -30,7 +37,7 @@ workflow cellrangerCount {
   parameter_meta {
     runID: "A unique run ID string."
     samplePrefix: "Sample name (FASTQ file prefix). Can take multiple comma-separated values."
-    fastqDirectory: "Path to folder containing fastq files."
+    fastqDirectory: "Path to folder containing symlinked fastq files."
     transcriptomeDirectory: "Path to Cell Ranger compatible transcriptome reference."
     localMem: "Restricts cellranger to use specified amount of memory (in GB) to execute pipeline stages. By default, cellranger will use 90% of the memory available on your system."
   }
@@ -43,6 +50,40 @@ workflow cellrangerCount {
   }
 }
 
+task symlinkFastqs {
+  input {
+    Array[File] fastqs
+    String? samplePrefix
+    Int mem = 1
+  }
+
+  command <<<
+    mkdir ~{samplePrefix}
+    while read line ; do
+      ln -s $line ~{samplePrefix}/$(basename $line)
+    done < ~{write_lines(fastqs)}
+    echo $PWD/~{samplePrefix}
+  >>>
+
+  runtime {
+    memory: "~{mem} GB"
+  }
+
+  output {
+     String fastqDirectory = read_string(stdout())
+  }
+
+  parameter_meta {
+    fastqs: "Array of input fastqs."
+  }
+
+  meta {
+    output_meta: {
+      fastqDirectory: "Path to folder containing symlinked fastq files."
+    }
+  }
+}
+
 task count {
   input {
     String? modules = "cellranger"
@@ -51,52 +92,51 @@ task count {
     String samplePrefix
     String fastqDirectory
     String transcriptomeDirectory
-    String? localMem = "2"
+    Int? localMem = 64
+    Int timeout = 24
   }
 
   command <<<
    ~{cellranger} count \
     --id "~{runID}" \
-    --fastq "~{fastqDirectory}" \
+    --fastqs "~{fastqDirectory}" \
     --sample "~{samplePrefix}" \
     --transcriptome "~{transcriptomeDirectory}" \
     --localmem "~{localMem}"
 
-    # zip gene matrices
-    zip -r feature_bc_matrix \
-    outs/filtered_feature_bc_matrix \
-    outs/raw_feature_bc_matrix
+    # compress folders
+    tar cf - \
+    ~{runID}/outs/filtered_feature_bc_matrix \
+    ~{runID}/outs/raw_feature_bc_matrix | gzip --no-name > feature_bc_matrix.tar.gz
 
-    # zip analysis folder
-    zip -r analysis \
-    outs/analysis
+    tar cf - ~{runID}/outs/analysis | gzip --no-name > analysis.tar.gz
 
-    #zip h5 files
-    zip gene_matrices_molecule_info_h5 \
-    outs/raw_feature_bc_matrix.h5 \
-    outs/filtered_feature_bc_matrix.h5 \
-    outs/molecule_info.h5
+    tar cf - \
+    ~{runID}/outs/raw_feature_bc_matrix.h5 \
+    ~{runID}/outs/filtered_feature_bc_matrix.h5 \
+    ~{runID}/outs/molecule_info.h5 | gzip --no-name > gene_matrices_molecule_info_h5.tar.gz
   >>>
 
   runtime {
     memory: "~{localMem} GB"
     modules: "~{modules}"
+    timeout: "~{timeout}"
   }
 
   output {
-    File possortedGenomeBam = "outs/possorted_genome_bam.bam"
-    File possortedGenomeBamIndex = "outs/possorted_genome_bam.bam.bai"
-    File cloupe = "outs/cloupe.cloupe"
-    File metricsSummary = "outs/metrics_summary.csv"
-    File featureBcMatrix = "feature_bc_matrix.zip"
-    File analysis = "analysis.zip"
-    File geneMatricesMoleculeInfoH5 = "gene_matrices_molecule_info_h5.zip"
+    File possortedGenomeBam = "~{runID}/outs/possorted_genome_bam.bam"
+    File possortedGenomeBamIndex = "~{runID}/outs/possorted_genome_bam.bam.bai"
+    File cloupe = "~{runID}/outs/cloupe.cloupe"
+    File metricsSummary = "~{runID}/outs/metrics_summary.csv"
+    File featureBcMatrix = "feature_bc_matrix.tar.gz"
+    File analysis = "analysis.tar.gz"
+    File geneMatricesMoleculeInfoH5 = "gene_matrices_molecule_info_h5.tar.gz"
   }
 
   parameter_meta {
     runID: "A unique run ID string."
     samplePrefix: "Sample name (FASTQ file prefix). Can take multiple comma-separated values."
-    fastqDirectory: "Path to folder containing fastq files."
+    fastqDirectory: "Path to folder containing symlinked fastq files."
     transcriptomeDirectory: "Path to Cell Ranger compatible transcriptome reference."
     localMem: "Restricts cellranger to use specified amount of memory (in GB) to execute pipeline stages. By default, cellranger will use 90% of the memory available on your system."
     modules: "Environment module name to load before command execution."
