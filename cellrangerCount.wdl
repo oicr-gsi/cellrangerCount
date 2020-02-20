@@ -7,6 +7,7 @@ workflow cellrangerCount {
     Array[File] fastqs
     String transcriptomeDirectory
     Int? localMem
+    Int? timeout
   }
 
   call symlinkFastqs {
@@ -21,7 +22,8 @@ workflow cellrangerCount {
       samplePrefix = samplePrefix,
       fastqDirectory = symlinkFastqs.fastqDirectory,
       transcriptomeDirectory = transcriptomeDirectory,
-      localMem = localMem
+      localMem = localMem,
+      timeout = timeout
   }
 
   output {
@@ -40,6 +42,7 @@ workflow cellrangerCount {
     fastqDirectory: "Path to folder containing symlinked fastq files."
     transcriptomeDirectory: "Path to Cell Ranger compatible transcriptome reference."
     localMem: "Restricts cellranger to use specified amount of memory (in GB) to execute pipeline stages. By default, cellranger will use 90% of the memory available on your system."
+    timeout: "Restricts cellranger to run in the specified time budget."
   }
 
   meta {
@@ -93,7 +96,7 @@ task count {
     String fastqDirectory
     String transcriptomeDirectory
     Int? localMem = 64
-    Int timeout = 24
+    Int? timeout = 24
   }
 
   command <<<
@@ -139,6 +142,7 @@ task count {
     fastqDirectory: "Path to folder containing symlinked fastq files."
     transcriptomeDirectory: "Path to Cell Ranger compatible transcriptome reference."
     localMem: "Restricts cellranger to use specified amount of memory (in GB) to execute pipeline stages. By default, cellranger will use 90% of the memory available on your system."
+    timeout: "Restricts cellranger to run in the specified time budget."
     modules: "Environment module name to load before command execution."
   }
 

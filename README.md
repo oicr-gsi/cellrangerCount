@@ -25,15 +25,14 @@ Parameter|Value|Description
 #### Optional workflow parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
-`localMem`|Int?|None|Restricts cellranger to use specified amount of memory (in GB) to execute pipeline stages. By default, cellranger will use 90% of the memory available on your system.
-
+`localMem`|Int?|64|Restricts cellranger to use specified amount of memory (in GB) to execute pipeline stages. By default, cellranger will use 90% of the memory available on your system.
+`timeout`|Int?|168h|Restricts cellranger to run in the specified time budget.
 
 #### Optional task parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
 `count.modules`|String?|"cellranger"|Environment module name to load before command execution.
 `count.cellranger`|String?|"cellranger"|
-`count.timeout`|Int|24|
 
 ### Outputs
 
