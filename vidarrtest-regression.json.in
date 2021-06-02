@@ -1,9 +1,10 @@
 [
     {
         "arguments": {
-            "cellrangerCount.count.cellranger": null,
             "cellrangerCount.count.modules": null,
             "cellrangerCount.count.timeout": null,
+            "cellrangerCount.count.threads": null,
+            "cellrangerCount.count.localMem": null,
             "cellrangerCount.fastqs": [
                 {
                     "contents": {
@@ -119,9 +120,10 @@
     },
     {
         "arguments": {
-            "cellrangerCount.count.cellranger": null,
             "cellrangerCount.count.modules": null,
             "cellrangerCount.count.timeout": null,
+            "cellrangerCount.count.threads": null,
+            "cellrangerCount.count.localMem": null,
             "cellrangerCount.fastqs": [
                 {
                     "contents": {
