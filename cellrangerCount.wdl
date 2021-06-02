@@ -6,7 +6,6 @@ workflow cellrangerCount {
     String samplePrefix
     Array[File] fastqs
     String transcriptomeDirectory
-    Int? localMem
   }
 
   call symlinkFastqs {
@@ -20,8 +19,7 @@ workflow cellrangerCount {
       runID = runID,
       samplePrefix = samplePrefix,
       fastqDirectory = symlinkFastqs.fastqDirectory,
-      transcriptomeDirectory = transcriptomeDirectory,
-      localMem = localMem
+      transcriptomeDirectory = transcriptomeDirectory
   }
 
   output {
@@ -86,18 +84,20 @@ task symlinkFastqs {
 
 task count {
   input {
-    String? modules = "cellranger"
-    String? cellranger = "cellranger"
+    String modules = "cellranger/3.1.0"
     String runID
     String samplePrefix
     String fastqDirectory
     String transcriptomeDirectory
-    Int? localMem = 64
+    Int threads = 4
+    Int localMem = 64
     Int timeout = 24
   }
 
   command <<<
-   ~{cellranger} count \
+    set -euo pipefail
+
+    cellranger count \
     --id "~{runID}" \
     --fastqs "~{fastqDirectory}" \
     --sample "~{samplePrefix}" \
@@ -118,6 +118,7 @@ task count {
   >>>
 
   runtime {
+    cpu: "~{threads}"
     memory: "~{localMem} GB"
     modules: "~{modules}"
     timeout: "~{timeout}"

@@ -1,0 +1,228 @@
+[
+    {
+        "arguments": {
+            "cellrangerCount.count.modules": null,
+            "cellrangerCount.count.timeout": null,
+            "cellrangerCount.count.threads": null,
+            "cellrangerCount.count.localMem": null,
+            "cellrangerCount.fastqs": [
+                {
+                    "contents": {
+                        "configuration": "/.mounts/labs/gsi/testdata/cellrangerCount/input_data/10XT_0001_Le_C_PE_458_MR_S1_L001_I1_001.fastq.gz",
+                        "externalIds": [
+                            {
+                                "id": "TEST",
+                                "provider": "TEST"
+                            }
+                        ]
+                    },
+                    "type": "EXTERNAL"
+                },
+                {
+                    "contents": {
+                        "configuration": "/.mounts/labs/gsi/testdata/cellrangerCount/input_data/10XT_0001_Le_C_PE_458_MR_S1_L001_R1_001.fastq.gz",
+                        "externalIds": [
+                            {
+                                "id": "TEST",
+                                "provider": "TEST"
+                            }
+                        ]
+                    },
+                    "type": "EXTERNAL"
+                },
+                {
+                    "contents": {
+                        "configuration": "/.mounts/labs/gsi/testdata/cellrangerCount/input_data/10XT_0001_Le_C_PE_458_MR_S1_L001_R2_001.fastq.gz",
+                        "externalIds": [
+                            {
+                                "id": "TEST",
+                                "provider": "TEST"
+                            }
+                        ]
+                    },
+                    "type": "EXTERNAL"
+                }
+            ],
+            "cellrangerCount.runID": "count_10XT_0001_Le_C_PE_458_MR",
+            "cellrangerCount.samplePrefix": "10XT_0001_Le_C_PE_458_MR",
+            "cellrangerCount.symlinkFastqs.mem": null,
+            "cellrangerCount.transcriptomeDirectory": "/.mounts/labs/gsi/modulator/sw/data/cellranger-genome-grch38-3.0.0"
+        },
+        "description": "Cellranger Count workflow test",
+        "engineArguments": {},
+        "id": "10XT_0001_Le_C_PE_458_MR-test",
+        "metadata": {
+            "cellrangerCount.analysis": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_cellrangerCount_10XT_0001_Le_C_PE_458_MR-test_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "cellrangerCount.cloupe": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_cellrangerCount_10XT_0001_Le_C_PE_458_MR-test_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "cellrangerCount.featureBcMatrix": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_cellrangerCount_10XT_0001_Le_C_PE_458_MR-test_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "cellrangerCount.geneMatricesMoleculeInfoH5": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_cellrangerCount_10XT_0001_Le_C_PE_458_MR-test_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "cellrangerCount.metricsSummary": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_cellrangerCount_10XT_0001_Le_C_PE_458_MR-test_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "cellrangerCount.possortedGenomeBaiIndex": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_cellrangerCount_10XT_0001_Le_C_PE_458_MR-test_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "cellrangerCount.possortedGenomeBam": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_cellrangerCount_10XT_0001_Le_C_PE_458_MR-test_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/cellrangerCount/output_metrics/1.0/10XT_0001_Le_C_PE_458_MR-test.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "cellrangerCount.count.modules": null,
+            "cellrangerCount.count.timeout": null,
+            "cellrangerCount.count.threads": null,
+            "cellrangerCount.count.localMem": null,
+            "cellrangerCount.fastqs": [
+                {
+                    "contents": {
+                        "configuration": "/.mounts/labs/gsi/testdata/cellrangerCount/input_data/10XT_0001_Le_C_PE_458_MR_S1_L001_R2_001.fastq.gz",
+                        "externalIds": [
+                            {
+                                "id": "TEST",
+                                "provider": "TEST"
+                            }
+                        ]
+                    },
+                    "type": "EXTERNAL"
+                },
+                {
+                    "contents": {
+                        "configuration": "/.mounts/labs/gsi/testdata/cellrangerCount/input_data/10XT_0001_Le_C_PE_458_MR_S1_L001_R1_001.fastq.gz",
+                        "externalIds": [
+                            {
+                                "id": "TEST",
+                                "provider": "TEST"
+                            }
+                        ]
+                    },
+                    "type": "EXTERNAL"
+                }
+            ],
+            "cellrangerCount.runID": "count_10XT_0001_Le_C_PE_458_MR",
+            "cellrangerCount.samplePrefix": "10XT_0001_Le_C_PE_458_MR",
+            "cellrangerCount.symlinkFastqs.mem": null,
+            "cellrangerCount.transcriptomeDirectory": "/.mounts/labs/gsi/modulator/sw/data/cellranger-genome-grch38-3.0.0"
+        },
+        "description": "Cellranger Count workflow test",
+        "engineArguments": {},
+        "id": "10XT_0001_Le_C_PE_458_MR-test2",
+        "metadata": {
+            "cellrangerCount.analysis": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_cellrangerCount_10XT_0001_Le_C_PE_458_MR-test2_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "cellrangerCount.cloupe": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_cellrangerCount_10XT_0001_Le_C_PE_458_MR-test2_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "cellrangerCount.featureBcMatrix": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_cellrangerCount_10XT_0001_Le_C_PE_458_MR-test2_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "cellrangerCount.geneMatricesMoleculeInfoH5": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_cellrangerCount_10XT_0001_Le_C_PE_458_MR-test2_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "cellrangerCount.metricsSummary": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_cellrangerCount_10XT_0001_Le_C_PE_458_MR-test2_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "cellrangerCount.possortedGenomeBaiIndex": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_cellrangerCount_10XT_0001_Le_C_PE_458_MR-test2_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "cellrangerCount.possortedGenomeBam": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_cellrangerCount_10XT_0001_Le_C_PE_458_MR-test2_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/cellrangerCount/output_metrics/1.0/10XT_0001_Le_C_PE_458_MR-test2.metrics",
+                "type": "script"
+            }
+        ]
+    }
+]
